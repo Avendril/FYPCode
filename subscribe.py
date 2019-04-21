@@ -1,6 +1,7 @@
 import os
 import time
 import paho.mqtt.client as mqtt
+#from influxdb import InfluxDBClient as influx
 
 broker="192.168.0.157"
 test = "TestHive/#"
