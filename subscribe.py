@@ -1,6 +1,7 @@
 import os
 import time
 import paho.mqtt.client as mqtt
+import testhiveDBscript as database
 #from influxdb import InfluxDBClient as influx
 
 broker="192.168.0.157"
@@ -33,15 +34,19 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     if msg.topic == "TestHive/Weight/Weight1":
 	print("Weight: " + str(msg.payload))
+	database.upload_to_db('weight', str(msg.payload))
     elif msg.topic == "TestHive/Temperature/Temp1":
 	print("Temp1: " + str(msg.payload))
+	database.upload_to_db('Temperature1', str(msg.payload))
     elif msg.topic == "TestHive/Temperature/Temp2":
 	print("Temp2: " + str(msg.payload))
+	database.upload_to_db('Temperature2', str(msg.payload))
     elif msg.topic == "TestHive/Humidity/Humi1":
 	print("Humidity: " + str(msg.payload))
-    elif msg.topic == "motion":
-	print "5"
- #   print "Topic: ", msg.topic + "\nMessage: " + str(msg.payload) 
+	database.upload_to_db('Humidity', str(msg.payload))
+#   elif msg.topic == "motion":
+#	print "5"
+#   print "Topic: ", msg.topic + "\nMessage: " + str(msg.payload) 
 
 #Initialise the above connection and message definitions
 client.on_connect=on_connect
