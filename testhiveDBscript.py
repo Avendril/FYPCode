@@ -16,7 +16,7 @@ def upload_to_db(place, sensorRead):
                  }
             ]
 
-	client = InfluxDBClient('localhost', 8086, 'Avendril', 'testhive', 'TestHiveDB')
+	client = InfluxDBClient('localhost', 8086, 'TestHiveDB')
 	client.write_points(json_body)
 
 def upload_to_db_String(place, sensorRead):
@@ -37,7 +37,7 @@ def upload_to_db_String(place, sensorRead):
                          }
                     ]
 
-                client = InfluxDBClient('localhost', 8086, 'Avendril', 'testhive', 'TestHiveDB')
+                client = InfluxDBClient('localhost', 8086, 'TestHiveDB')
                 client.write_points(json_body)
 
 

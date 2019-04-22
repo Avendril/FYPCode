@@ -6,6 +6,7 @@ import testhiveDBscript as database
 
 broker="192.168.0.157"
 test = "TestHive/#"
+#Not used in code, just for me to see my topics
 temperature1 = "TestHive/Temperature/Temp1"
 temperature2 = "TestHive/Temperature/Temp2"
 humidity1 = "TestHive/Humidity/Humi1"
@@ -19,7 +20,8 @@ accelz = "TestHive/Accelerometer/AxisZ"
 barometer = "TestHive/Barometer/Baro1"
 gasSensor = "TestHive/GasSensor/gas1"
 
-mqtt_topics = [test, weight1, humidity1]
+#Subscribing to everything
+mqtt_topics = [test]
 mqtt_broker_ip = broker
 client = mqtt.Client()
 
@@ -31,6 +33,7 @@ def on_connect(client, userdata, flags, rc):
     for topic in mqtt_topics:
         client.subscribe(topic)
 
+#seperating each message in the queue by topic, and then sending it to the database
 def on_message(client, userdata, msg):
     if msg.topic == "TestHive/Weight/Weight1":
 	print("Weight: " + str(msg.payload))
