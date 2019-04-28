@@ -17,7 +17,7 @@ gyroz = "TestHive/Gyroscope/AxisZ"
 accelx = "TestHive/Accelerometer/AxisX"
 accely = "TestHive/Accelerometer/AxisY"
 accelz = "TestHive/Accelerometer/AxisZ"
-barometer = "TestHive/Barometer/Baro1"
+barometer = "TestHive/Barometer/Barometer1"
 gasSensor = "TestHive/GasSensor/gas1"
 
 #Subscribing to everything
@@ -35,18 +35,43 @@ def on_connect(client, userdata, flags, rc):
 
 #seperating each message in the queue by topic, and then sending it to the database
 def on_message(client, userdata, msg):
-    if msg.topic == "TestHive/Weight/Weight1":
-	print("Weight: " + str(msg.payload))
-	database.upload_to_db('weight', str(msg.payload))
-    elif msg.topic == "TestHive/Temperature/Temp1":
-	print("Temp1: " + str(msg.payload))
-	database.upload_to_db('Temperature1', str(msg.payload))
-    elif msg.topic == "TestHive/Temperature/Temp2":
-	print("Temp2: " + str(msg.payload))
-	database.upload_to_db('Temperature2', str(msg.payload))
-    elif msg.topic == "TestHive/Humidity/Humi1":
-	print("Humidity: " + str(msg.payload))
-	database.upload_to_db('Humidity', str(msg.payload))
+	if msg.topic == "TestHive/Weight/Weight1": #Weight data
+		print("Weight: " + str(msg.payload))
+		database.upload_to_db('weight', str(msg.payload))
+	elif msg.topic == "TestHive/Temperature/Temp1": #Temperature 1 data
+		print("Temp1: " + str(msg.payload))
+		database.upload_to_db('Temperature1', str(msg.payload))
+	elif msg.topic == "TestHive/Temperature/Temp2": #Temperature 2 data
+		print("Temp2: " + str(msg.payload))
+		database.upload_to_db('Temperature2', str(msg.payload))
+	elif msg.topic == "TestHive/Humidity/Humi1": #Humidity data
+		print("Humidity: " + str(msg.payload))
+		database.upload_to_db('Humidity', str(msg.payload))
+	elif msg.topic == "TestHive/Gyroscope/AxisZ": #Gyroscope data
+		print("Gyro:AxisX: " + str(msg.payload))
+		database.upload_to_db('Gyroscope/AxisZ', str(msg.payload))
+	elif msg.topic == "TestHive/Gyroscope/AxisY":
+		print("Gyro:AxisZ: " + str(msg.payload))
+		database.upload_to_db('Gyroscope/AxisY', str(msg.payload))
+	elif msg.topic == "TestHive/Gyroscope/AxisX":
+		print("Gyro:AxisY: " + str(msg.payload))
+		database.upload_to_db('Gyroscope/AxisX', str(msg.payload))
+	elif msg.topic == "TestHive/Gyroscope/AxisZ":
+		print("Gyro:AxisX: " + str(msg.payload))
+		database.upload_to_db('Gyroscope/AxisX', str(msg.payload))
+	elif msg.topic == "TestHive/Accelerometer/AxisZ": #Accelerometer data
+		print("Accel:AxisZ: " + str(msg.payload))
+		database.upload_to_db('Accelerometer/AxisZ', str(msg.payload))
+	elif msg.topic == "TestHive/Accelerometer/AxisY":
+		print("Accel:AxisY: " + str(msg.payload))
+		database.upload_to_db('Accelerometer/AxisY', str(msg.payload))
+	elif msg.topic == "TestHive/Accelerometer/AxisX":
+		print("Accel:AxisX: " + str(msg.payload))
+		database.upload_to_db('Accelerometer/AxisX', str(msg.payload))
+	elif msg.topic == "TestHive/Barometer/Barometer1":
+		print("Barometer: " + str(msg.payload))
+		database.upload_to_db('Barometer', str(msg.payload))
+
 #   elif msg.topic == "motion":
 #	print "5"
 #   print "Topic: ", msg.topic + "\nMessage: " + str(msg.payload) 
