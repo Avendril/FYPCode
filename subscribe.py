@@ -2,24 +2,10 @@ import os
 import time
 import paho.mqtt.client as mqtt
 import testhiveDBscript as database
-#from influxdb import InfluxDBClient as influx
 
+#hardcoded data used in this prototype
 broker="192.168.0.157"
 test = "TestHive/#"
-#Not used in code, just for me to see my topics
-temperature1 = "TestHive/Temperature/Temp1"
-temperature2 = "TestHive/Temperature/Temp2"
-humidity1 = "TestHive/Humidity/Humi1"
-weight1 = "TestHive/Weight/Weight1"
-gyrox = "TestHive/Gyroscope/AxisX"
-gyroy = "TestHive/Gyroscope/AxisY"
-gyroz = "TestHive/Gyroscope/AxisZ"
-accelx = "TestHive/Accelerometer/AxisX"
-accely = "TestHive/Accelerometer/AxisY"
-accelz = "TestHive/Accelerometer/AxisZ"
-barometer = "TestHive/Barometer/Barometer1"
-gasSensor = "TestHive/GasSensor/gas1"
-
 #Subscribing to everything
 mqtt_topics = [test]
 mqtt_broker_ip = broker
